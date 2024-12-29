@@ -234,6 +234,7 @@
 
 
 
+
         /* 4x2 Grid Styling */
         .square-grid {
             display: grid;
@@ -338,16 +339,56 @@
           footer a:hover {
             color: #ccc;
           }
+          /* Hide menu on small screens */
+.menu-toggle {
+    display: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 14px;
+}
+
+#menu {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show the hamburger menu */
+    }
+
+    #menu {
+        display: none; /* Hide the menu initially */
+        flex-direction: column; /* Stack items vertically */
+        width: 100%;
+        background-color: #333; /* Match navbar color */
+        position: absolute;
+        top: 60px; /* Adjust for navbar height */
+        left: 0;
+        z-index: 1000;
+    }
+
+    #menu.show {
+        display: flex; /* Show menu when toggled */
+    }
+
+    #menu a {
+        padding: 10px 20px;
+        text-align: left;
+    }
+}
+
     </style>
 </head>
 <body>
 
     <div class="navbar">
         <div class="logo-title">
-            <img src="data:image/png;base64,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" alt="Logo">
+            <img src="data:image/png;base64,..." alt="Logo">
             <span style="color: white; font-size: 20px;">manvel infotch</span>
         </div>
-        <ul>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div> <!-- Hamburger Menu -->
+        <ul id="menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li class="dropdown">
@@ -379,6 +420,7 @@
             </li>
         </ul>
     </div>
+    
 
     <div class="content">
         <div class="slider">
@@ -558,6 +600,13 @@
                 }, 5000);
             });
         });
-        </script>
+        
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('show');
+    }
+</script>
+
+       
 </body>
 </html>
